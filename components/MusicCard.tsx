@@ -14,30 +14,19 @@ export default function MusicCard({ item, onPress }: Props) {
       <Image source={{ uri: item.imageUrl }} style={styles.image} />
       <View style={styles.info}>
         <View style={styles.row}>
-          <Text style={styles.label}>Title</Text>
-          <Text style={styles.value}>{item.title}</Text>
+          <Text style={styles.title}>{item.title}</Text>
         </View>
 
         <View style={styles.row}>
-          <Text style={styles.label}>Artist</Text>
-          <Text style={styles.value}>{item.artist}</Text>
-        </View>
-
-        <View style={styles.row}>
-          <Text style={styles.label}>Album</Text>
-          <Text style={styles.value}>{item.album}</Text>
-        </View>
-
-        <View style={styles.row}>
-          <Text style={styles.label}>Year</Text>
-          <Text style={styles.value}>{item.year}</Text>
-        </View>
-
-        <View style={styles.row}>
-          <Text style={styles.label}>Sold out</Text>
-          <Text style={item.isSoldOut ? styles.sold : styles.available}>
-            {item.isSoldOut ? "Yes" : "No"}
-          </Text>
+          <View style={styles.artistContainer}>
+            <View style={styles.yearContainer}>
+              <Text style={styles.artist}>{item.artist}</Text>
+              <Text style={styles.year}>{item.year}</Text>
+            </View>
+            <Text style={styles.sold}>
+              {item.isSoldOut ? "SOLD OUT" : "AVAILABLE"}
+            </Text>
+          </View>
         </View>
       </View>
     </TouchableOpacity>
@@ -45,46 +34,63 @@ export default function MusicCard({ item, onPress }: Props) {
 }
 
 const styles = StyleSheet.create({
-  card:{
-    flex:1,
-    flexDirection:"row",
-    backgroundColor:"#eeebebff",
-    padding:16,
-    borderRadius:10,
-    marginBottom:12,
+  card: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "#eeebebff",
+    padding: 16,
+    borderRadius: 10,
+    marginBottom: 12,
   },
-  image:{
-    height:100,
-    width:100,
-    borderRadius:50,
-    marginRight:15,
-  },
-  info: {
-    marginTop: 8,
+  image: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    marginRight: 15,
   },
   row: {
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 4,
     paddingHorizontal: 8,
   },
-  label: {
-    color: "#737171ff",
-    fontSize: 13,
-    marginRight:8,
-    
+  info: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "flex-start",
   },
-  value: {
-    color: "#565656ff",
-    fontSize: 14,
-    fontWeight:"800",
-    flexShrink:1,
-    marginLeft:8,
+  artistContainer: {
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
-
+  yearContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  artist: {
+    fontWeight: "800",
+    fontSize: 12,
+  },
+  year: {
+    fontWeight: "400",
+    fontSize: 10,
+  },
   sold: {
+    marginTop: 2,
     color: "#ff4d4d",
     fontWeight: "600",
+    borderRadius: 5,
+    padding: 2,
+    borderColor: "#ff4d4d",
+    borderWidth: 1,
   },
   available: {
     color: "#4caf50",
