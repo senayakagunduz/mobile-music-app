@@ -49,11 +49,10 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   row: {
+    flex:1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 4,
-    paddingHorizontal: 8,
   },
   info: {
     flex: 1,
